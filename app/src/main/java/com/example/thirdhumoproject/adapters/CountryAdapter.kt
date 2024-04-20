@@ -9,10 +9,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.APP_ACTIVITY
 import com.example.thirdhumoproject.R
-import com.example.thirdhumoproject.data.country_item
+import com.example.thirdhumoproject.data.CountruItem
 
-class country_adapter(
-    private var list_country: List<country_item>,
+class CountryAdapter(
+    private var list_country: List<CountruItem>,
     private val isPopularXml: Boolean = false
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -30,19 +30,16 @@ class country_adapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.popular_country_item, parent, false)
-
-        val itemView2 = LayoutInflater.from(parent.context)
-            .inflate(R.layout.country_item, parent, false)
-
-
         return when (isPopularXml) {
             true -> {
+                val itemView = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.popular_country_item, parent, false)
                 PopularCountryViewHolder(itemView)
             }
 
             false -> {
+                val itemView2 = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.country_item, parent, false)
                 MyViewHolder(itemView2)
             }
         }
@@ -51,7 +48,7 @@ class country_adapter(
     override fun getItemCount(): Int = list_country.size
 
 
-    fun setFilterList(list: List<country_item>) {
+    fun setFilterList(list: List<CountruItem>) {
         this.list_country = list
         notifyDataSetChanged()
 

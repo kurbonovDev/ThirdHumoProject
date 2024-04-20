@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.replaceFragment
 import com.example.thirdhumoproject.R
-import com.example.thirdhumoproject.adapters.country_adapter
-import com.example.thirdhumoproject.data.country_item
+import com.example.thirdhumoproject.adapters.CountryAdapter
+import com.example.thirdhumoproject.data.CountruItem
 import com.example.thirdhumoproject.databinding.FragmentMainBinding
 
 
@@ -20,12 +20,12 @@ class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
     private lateinit var rcView: RecyclerView
-    private lateinit var adapter: country_adapter
+    private lateinit var adapter: CountryAdapter
 
-    private var popularCountryList = listOf<country_item>(
-        country_item("Таджикистан", R.drawable.tj),
-        country_item("Россия", R.drawable.ru),
-        country_item("Узбекстан", R.drawable.uzb)
+    private var popularCountryList = listOf<CountruItem>(
+        CountruItem("Таджикистан", R.drawable.tj),
+        CountruItem("Россия", R.drawable.ru),
+        CountruItem("Узбекстан", R.drawable.uzb)
     )
 
     override fun onCreateView(
@@ -53,7 +53,7 @@ class MainFragment : Fragment() {
     private fun initRcView() {
         rcView = binding.rcView
         rcView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        adapter = country_adapter(popularCountryList,true)
+        adapter = CountryAdapter(popularCountryList,true)
         rcView.adapter = adapter
     }
 

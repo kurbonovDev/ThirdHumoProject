@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.APP_ACTIVITY
 import com.example.replaceFragment
 import com.example.thirdhumoproject.R
-import com.example.thirdhumoproject.adapters.country_adapter
-import com.example.thirdhumoproject.data.country_item
+import com.example.thirdhumoproject.adapters.CountryAdapter
+import com.example.thirdhumoproject.data.CountruItem
 import com.example.thirdhumoproject.databinding.FragmentSecondBinding
 import java.util.Locale
 
@@ -23,17 +22,17 @@ class SecondFragment : Fragment() {
 
     private lateinit var binding: FragmentSecondBinding
     private lateinit var rcView:RecyclerView
-    private lateinit var adapter: country_adapter
+    private lateinit var adapter: CountryAdapter
     private lateinit var searchView: SearchView
 
-    private var countries = listOf<country_item>(
-        country_item("Россия",R.drawable.ru),
-        country_item("Узбекистан",R.drawable.uzb),
-        country_item("Таджикистан",R.drawable.tj),
-        country_item("Казахстан",R.drawable.kz),
-        country_item("ОАЭ",R.drawable.arab),
-        country_item("Корея",R.drawable.korea),
-        country_item("Украина",R.drawable.ukraine),
+    private var countries = listOf<CountruItem>(
+        CountruItem("Россия",R.drawable.ru),
+        CountruItem("Узбекистан",R.drawable.uzb),
+        CountruItem("Таджикистан",R.drawable.tj),
+        CountruItem("Казахстан",R.drawable.kz),
+        CountruItem("ОАЭ",R.drawable.arab),
+        CountruItem("Корея",R.drawable.korea),
+        CountruItem("Украина",R.drawable.ukraine),
 
     )
     override fun onCreateView(
@@ -58,7 +57,7 @@ class SecondFragment : Fragment() {
 
         binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                TODO("Not yet implemented")
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -71,28 +70,27 @@ class SecondFragment : Fragment() {
     private fun filterList(query: String?) {
 
         if (query!=null){
-            val filtredList =ArrayList<country_item>()
+            val filteredList =ArrayList<CountruItem>()
             for (i in countries){
                 if (i.name_country.lowercase(Locale.ROOT).contains(query)){
-                    filtredList.add(i)
+                    filteredList.add(i)
                 }
             }
 
-            if (filtredList.isEmpty()){
+            if (filteredList.isEmpty()){
                 Toast.makeText(APP_ACTIVITY,"Не нашлось такой страны !",Toast.LENGTH_SHORT).show()
-                adapter.setFilterList(filtredList)
+                adapter.setFilterList(filteredList)
             }else{
-                adapter.setFilterList(filtredList)
+                adapter.setFilterList(filteredList)
             }
         }
     }
 
 
     private fun initRcView(){
-
         rcView=binding.rcView
         rcView.layoutManager = LinearLayoutManager(APP_ACTIVITY)
-        adapter = country_adapter(countries)
+        adapter = CountryAdapter(countries)
         rcView.adapter=adapter
     }
 

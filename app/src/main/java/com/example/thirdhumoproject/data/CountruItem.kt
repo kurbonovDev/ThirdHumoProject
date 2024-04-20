@@ -1,6 +1,6 @@
 package com.example.thirdhumoproject.data
 
-data class country_item (
+data class CountruItem (
 
     val name_country:String,
     val image:Int
