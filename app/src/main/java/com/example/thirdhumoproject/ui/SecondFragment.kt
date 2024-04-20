@@ -23,7 +23,6 @@ class SecondFragment : Fragment() {
     private lateinit var binding: FragmentSecondBinding
     private lateinit var rcView:RecyclerView
     private lateinit var adapter: CountryAdapter
-    private lateinit var searchView: SearchView
 
     private var countries = listOf<CountruItem>(
         CountruItem("Россия",R.drawable.ru),
